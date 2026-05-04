@@ -9,3 +9,8 @@ venv/
 dist/
 build/
 .DS_Store
+
+# Datos privados / PII — nunca commitear
+conversaciones_whatsapp.json
+examples_generated.json
+examples_generated.jsonl
