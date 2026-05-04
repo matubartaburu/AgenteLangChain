@@ -6,20 +6,23 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID", "")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN", "")
-TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER", "")
-SUPABASE_URL = os.getenv("SUPABASE_URL", "")
+# Anthropic — modelo principal (Sonnet) y auxiliar (Haiku)
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+
+# Supabase — historial de conversaciones
+SUPABASE_URL         = os.getenv("SUPABASE_URL", "")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY", "")
 
+# Kapso — proveedor alternativo de WhatsApp (Meta Cloud API)
+KAPSO_API_KEY = os.getenv("KAPSO_API_KEY", "")
+
+# OpenAI — solo para embeddings (text-embedding-3-small) usados por el RAG
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+
 _required = {
-    "OPENAI_API_KEY": OPENAI_API_KEY,
-    "TWILIO_ACCOUNT_SID": TWILIO_ACCOUNT_SID,
-    "TWILIO_AUTH_TOKEN": TWILIO_AUTH_TOKEN,
-    "TWILIO_WHATSAPP_NUMBER": TWILIO_WHATSAPP_NUMBER,
-    "SUPABASE_URL": SUPABASE_URL,
-    "SUPABASE_SERVICE_KEY": SUPABASE_SERVICE_KEY,
+    "ANTHROPIC_API_KEY":     ANTHROPIC_API_KEY,
+    "SUPABASE_URL":          SUPABASE_URL,
+    "SUPABASE_SERVICE_KEY":  SUPABASE_SERVICE_KEY,
 }
 _missing = [k for k, v in _required.items() if not v]
 if _missing:
